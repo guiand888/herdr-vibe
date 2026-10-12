@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "herdr-vibe",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Report Mistral Vibe agent state and resume command to Herdr.",
   "author": {
     "name": "Guillaume Andre",
