@@ -4,6 +4,8 @@
 
 > Mistral Vibe plugin that reports agent state and resume commands to Herdr.
 
+Companion to [herdr-mistral-vibe](https://github.com/guiand888/herdr-mistral-vibe), the Herdr plugin that starts Vibe panes. The pair makes Mistral Vibe feature-complete in Herdr: that plugin opens panes and keybindings, this one supplies sidebar state, notifications, and session restore.
+
 Herdr has no built-in detection for Mistral Vibe. This plugin implements Herdr's agent self-reporting protocol from Vibe's hook system, so Vibe sessions get a sidebar entry, finish and decision notifications, `herdr agent wait` support, and same-pane session restore after a Herdr server restart — without patching either project.
 
 Mapping of Vibe events to Herdr states:
