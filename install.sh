@@ -44,7 +44,7 @@ install() {
   cat >> "$HOOKS_FILE" <<EOF
 
 $BEGIN_MARKER
-# Managed by herdr-vibe (https://github.com/herdrdev/herdr integration).
+# Managed by herdr-vibe (https://github.com/guiand888/herdr-vibe).
 # Edit or remove with: ./install.sh uninstall
 
 [[hooks]]

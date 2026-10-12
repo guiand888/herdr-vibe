@@ -24,7 +24,7 @@ Requires `python3` on `PATH` and Herdr 0.7 or newer (0.9.2 or newer for session 
 Vibe 2.26.1 resolves plugin hooks (`ai.mistral.vibe/hooks.toml`) but does not execute them yet. The installer therefore also registers the hooks as user-level entries in `$VIBE_HOME/hooks.toml`, which Vibe runs today:
 
 ```bash
-git clone <this repository> ~/.vibe/plugins/herdr-vibe
+git clone https://github.com/guiand888/herdr-vibe ~/.vibe/plugins/herdr-vibe
 ~/.vibe/plugins/herdr-vibe/install.sh
 ```
 
