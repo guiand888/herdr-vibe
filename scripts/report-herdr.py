@@ -2,7 +2,8 @@
 """Report Mistral Vibe state to Herdr.
 
 Reads a Vibe hook payload from stdin and calls
-`herdr pane report-agent` through $HERDR_BIN_PATH. Runs only inside
+`herdr pane report-agent` through $HERDR_BIN_PATH (or `herdr`
+on PATH on herdr versions that do not inject it, e.g. 0.7.5). Runs only inside
 Herdr panes ($HERDR_ENV=1) and stays silent everywhere else. Vibe has
 no session-exit hook, so release is left to Herdr's idle-shell cleanup.
 
@@ -13,6 +14,7 @@ herdr 0.9.2 (trailing resume argv after `--`).
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -30,6 +32,19 @@ def _clean_session_id(value):
     if any(ord(char) < 32 or char == "'" for char in value):
         return None
     return value
+
+
+def _resolve_herdr():
+    """Prefer the injected binary; fall back to PATH.
+
+    Verified on the running machine: herdr 0.7.5 panes inject
+    HERDR_ENV, HERDR_PANE_ID, and HERDR_SOCKET_PATH but not
+    HERDR_BIN_PATH, so the PATH fallback is required there.
+    """
+    injected = os.environ.get("HERDR_BIN_PATH", "")
+    if injected:
+        return injected
+    return shutil.which("herdr") or ""
 
 
 def _build_argv(herdr, pane, state, seq, session_id, resume_ok):
@@ -76,7 +91,7 @@ def main():
     if os.environ.get("HERDR_ENV") != "1":
         return
     pane = os.environ.get("HERDR_PANE_ID", "")
-    herdr = os.environ.get("HERDR_BIN_PATH", "")
+    herdr = _resolve_herdr()
     if not pane or not herdr:
         return
 
