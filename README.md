@@ -47,7 +47,9 @@ herdr pane get "$HERDR_PANE_ID"
 
 Known limitations:
 
+- Vibe exposes no turn-start hook, so `working` is reported from the first tool call of a turn onward. While the model generates text without calling tools, the panel keeps the previous state; a turn with no tool calls shows no `working` at all.
 - Tool-approval prompts are not reported as `blocked`; Vibe has no permission-prompt hook, so only questions (`ask_user_question`) do.
+- The agent appears in the panel only after the first report, which is the first tool call or the end of the first turn — not at process start.
 - Vibe has no session-exit hook, so pane release is left to Herdr's idle-shell cleanup.
 - Windows is not supported; the hooks invoke `python3` through the system shell.
 - Once a Vibe release executes plugin hooks, run `./install.sh uninstall` and rely on the plugin copy alone.
