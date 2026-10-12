@@ -1,0 +1,29 @@
+[[hooks]]
+name = "report-blocked"
+type = "pre_tool"
+match = "ask_user_question"
+command = "python3 \"${PLUGIN_ROOT:-.}/scripts/report-herdr.py\" blocked"
+timeout = 10.0
+description = "Report to Herdr that Vibe is waiting for an answer"
+
+[[hooks]]
+name = "report-working"
+type = "pre_tool"
+match = "re:^(?!ask_user_question$).*$"
+command = "python3 \"${PLUGIN_ROOT:-.}/scripts/report-herdr.py\" working"
+timeout = 10.0
+description = "Report to Herdr that a Vibe turn is running a tool"
+
+[[hooks]]
+name = "report-tool-done"
+type = "post_tool"
+command = "python3 \"${PLUGIN_ROOT:-.}/scripts/report-herdr.py\" working"
+timeout = 10.0
+description = "Report to Herdr that a tool finished and the turn continues"
+
+[[hooks]]
+name = "report-idle"
+type = "post_agent"
+command = "python3 \"${PLUGIN_ROOT:-.}/scripts/report-herdr.py\" idle"
+timeout = 10.0
+description = "Report to Herdr that the Vibe turn ended"

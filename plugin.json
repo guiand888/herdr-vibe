@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "herdr-vibe",
+  "version": "0.1.0",
+  "description": "Report Mistral Vibe agent state and resume command to Herdr.",
+  "author": {
+    "name": "Guillaume Andre",
+    "email": "mail@guillaumea.fr"
+  },
+  "license": "AGPL-3.0-only",
+  "keywords": ["herdr", "integration", "agent-state"],
+  "extensions": {
+    "ai.mistral.vibe": {
+      "schemaVersion": 1,
+      "toolNamespace": "herdrVibe"
+    }
+  }
+}
